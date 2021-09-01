@@ -1,9 +1,10 @@
 package com.company;
 import java.util.ArrayList;
 
-public class CustomerList {
+public class CustomerList implements Iterator {
 	private ArrayList<Customer> theList;
-	
+	private Integer index = 0;
+
 	public CustomerList() {
 		this.theList = new ArrayList<Customer>();
 	}
@@ -30,5 +31,23 @@ public class CustomerList {
 		}
 		this.theList.add(cust);
 		return true;
+	}
+
+	@Override
+	public boolean hasNext() {
+		if (index >= theList.size()) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Object next() {
+		if (hasNext()) {
+			Object obj = theList.get(index);
+			index += 1;
+			return obj;
+		}
+		return null;
 	}
 }

@@ -26,7 +26,21 @@ public class VideoStore {
 	public boolean addCustomer(Customer cust) {
 		return customerList.addCustomer(cust);
 	}
-	
+
+	public void printAllVideo() {
+		while (videoList.hasNext()) {
+			Video video  = (Video) videoList.next();
+			System.out.println(video.toString());
+		}
+	}
+
+	public void printAllCustomer() {
+		while (customerList.hasNext()) {
+			Customer customer  = (Customer) customerList.next();
+			System.out.println(customer.toString());
+		}
+	}
+
 	public static void main(String[] args) {
 		VideoStore myStore = new VideoStore();
 		//create 3 video items
@@ -38,16 +52,21 @@ public class VideoStore {
 		myStore.addVideo(vid);
 		
 		//create 3 customers
-		Customer cust = new VIPCustomer("Ngo Bao Chau", "12 Math Avenue", "VIP001", "0203050813");
+		Customer cust = CustomerFactory.create("vip", "Ngo Bao Chau", "12 Math Avenue", "VIP001", "0203050813");
 		myStore.addCustomer(cust);
 		cust.borrowVid(myStore.getVideo("VD001"));
-		cust = new GuestCustomer("Pham Nhat Vuong", "12 Money Road", "G002", "0399999999");
+		cust = CustomerFactory.create("guest","Pham Nhat Vuong", "12 Money Road", "G002", "0399999999");
 		myStore.addCustomer(cust);
 		cust.borrowVid(myStore.getVideo("VD002"));
-		cust = new GuestCustomer("Nguyen Xuan Phuc", "12 Politics Street", "G003", "0311112222");
+		cust = CustomerFactory.create("guest","Nguyen Xuan Phuc", "12 Politics Street", "G003", "0311112222");
 		myStore.addCustomer(cust);
 		cust.borrowVid(myStore.getVideo("VD003"));
+		cust = CustomerFactory.create("supervip", "", "", "", "");
+		myStore.addCustomer(cust);
 
+		// Print all video and customer by iterator
+		myStore.printAllVideo();
+		myStore.printAllCustomer();
 	}
 
 }

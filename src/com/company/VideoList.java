@@ -2,9 +2,10 @@
 package com.company;
 import java.util.ArrayList;
 
-public class VideoList {
-private ArrayList<Video> theList;
-	
+public class VideoList implements Iterator {
+	private ArrayList<Video> theList;
+	private Integer index = 0;
+
 	public VideoList() {
 		this.theList = new ArrayList<Video>();
 	}
@@ -31,5 +32,23 @@ private ArrayList<Video> theList;
 		}
 		theList.add(vid);
 		return true;
+	}
+
+	@Override
+	public boolean hasNext() {
+		if (index >= theList.size()) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Object next() {
+		if (hasNext()) {
+			Object obj = theList.get(index);
+			index += 1;
+			return obj;
+		}
+		return null;
 	}
 }

@@ -69,4 +69,14 @@ public class Customer {
 		System.out.println("Customer " + this.getName() + " did not borrow the video item " + rental.getTitle());
 		return false;
 	}
+
+	@Override
+	public String toString() {
+		return "Customer{" +
+				"name='" + name + '\'' +
+				", address='" + address + '\'' +
+				", ID='" + ID + '\'' +
+				", phone='" + phone + '\'' +
+				'}';
+	}
 }
